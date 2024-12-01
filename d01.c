@@ -1,7 +1,7 @@
 #include"a.h"
 #define P 1000
 I main(V){
-  FILE * f = fget("d01a.txt", "r");
+  FILE * f = fget("d01.txt", "r");
   L n[2][P], s = 0, sim = 0, a;
   Fi(P, scanl(f, &n[0][i]) && scanl(f, &n[1][i]));
   struct { L k, v; } h[P]; Fi(P, h[i].k = -1, h[i].v = 0);
