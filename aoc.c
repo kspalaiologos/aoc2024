@@ -1,7 +1,7 @@
 #include"a.h"
 #include<curl/curl.h>
 I main(I ac, C * av[]) {
-  if(ac < 2) R 1;
+  I(ac < 2, R 1);
   C * opt = av[1];
   if(!strcmp(opt, "get-input") && ac == 3) {
     C * url; asprintf(&url, "https://adventofcode.com/2024/day/%d/input", atoi(av[2]));
@@ -9,7 +9,7 @@ I main(I ac, C * av[]) {
     C cstr[256]; fread(cstr, 1, 256, cookie);
     CURL * curl = curl_easy_init();
     C * oname; asprintf(&oname, "d%02d.txt", atoi(av[2]));
-    FILE * out = fget(oname, "w");
+    FILE * out = fget(oname, "wb");
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
