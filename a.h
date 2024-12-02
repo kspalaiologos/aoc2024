@@ -50,5 +50,7 @@ S FILE * fget(C * n, C * m) {
 }
 I scanl(FILE * f, L * l)_(fscanf(f, "%ld", l) != EOF)
 
+#define sgn(x) ((x > 0) - (x < 0))
+
 #endif
 
