@@ -46,9 +46,8 @@ typedef double D;
 
 S FILE * fget(C * n, C * m) {
   FILE * f = fopen(n, m);
-  I(!f, perror("fopen"); exit(1)); R f;
-}
-S I scanl(FILE * f, L * l)_(fscanf(f, "%ld", l) != EOF)
+  I(!f, perror("fopen"); exit(1)); R f; }
+S I scani(FILE * f, I * l)_(fscanf(f, "%d", l) != EOF)
 S C * slurp(C * n) {
   FILE * f = fget(n, "r");
   fseek(f, 0, SEEK_END);
@@ -56,9 +55,7 @@ S C * slurp(C * n) {
   rewind(f);
   C * d = malloc(s + 1);
   fread(d, 1, s, f);
-  d[s] = '\0';
-  return d;
-}
+  d[s] = 0; R d; }
 
 #define sgn(x) ((x > 0) - (x < 0))
 
