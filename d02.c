@@ -1,6 +1,5 @@
-#include"a.h"
-I main(V){
-  FILE * f = fget("d02.txt", "r");
+#include"a.h" // 479 531
+M(Fp f = fget("d02.txt", "r");
   I z = 0, n, d, t1 = 0, t2 = 0, c;
   C l[64], * p; I in[1000][16], x[16];
   W(fgets(l, 64, f),
@@ -17,4 +16,4 @@ I main(V){
     F$((c = 1, n = 1), x[n] != -1, n++,
       d = D(abs, n), c = c && d >= 1 && d <= 3)
     I(c, I(j == 0, t1++) E(t2++; break))))
-  printf("T1: %d, T2: %d\n", t1, t2);}
+  resi(t1, t2))
