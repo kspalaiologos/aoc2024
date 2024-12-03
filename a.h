@@ -24,13 +24,12 @@ typedef double D;
 #define SC static char
 #define R return
 #define _(a...) {return({a;});}
-#define Fi(n,a...) for(int i=0;i<n;i++){a;}
-#define Fj(n,a...) for(int j=0;j<n;j++){a;}
-#define Fx(n,a...) for(int x=0;x<n;x++){a;}
-#define Fy(n,a...) for(int y=0;y<n;y++){a;}
-#define F_(z,i,n,a...) for(int z=i;z<n;z++){a;}
+#define Fi(n,a...) for(typeof(n) i=0;i<n;i++){a;}
+#define Fj(n,a...) for(typeof(n) j=0;j<n;j++){a;}
+#define Fx(n,a...) for(typeof(n) x=0;x<n;x++){a;}
+#define Fy(n,a...) for(typeof(n) y=0;y<n;y++){a;}
+#define F_(z,i,n,a...) for(typeof(n) z=i;z<n;z++){a;}
 #define F$(x,y,z,a...) for(x;y;z){a;}
-#define F1(n,x,a...) for(i32 i=0;i<n;i+=x){a;}
 #define I(x,a...) if(x){a;}
 #define J(a...) else I(a)
 #define E(a...) else{a;}
