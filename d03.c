@@ -2,7 +2,7 @@
 I main(V) {
   C * data = slurp("d03.txt"), * p = data;
   regex_t r;  regmatch_t m[3];  I t1, t2, on = 1, n;
-  regcomp(&r, "mul\\(([0-9]{1,3}),([0-9]{1,3})\\)", REG_EXTENDED);
+  regcomp(&r, "mul\\(([0-9]+),([0-9]+)\\)", REG_EXTENDED);
   F$ ((t1 = t2 = 0), !regexec(&r, p, 3, m, 0), p += m[0].rm_eo,
     t1 += atoi(&p[m[1].rm_so]) * atoi(&p[m[2].rm_so]))
   F$ (p = data, *p != '\0', p += n,
