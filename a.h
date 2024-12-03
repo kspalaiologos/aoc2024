@@ -8,6 +8,7 @@
 #include <time.h>
 #include <math.h>
 #include <stdlib.h>
+#include <regex.h>
 
 typedef int I;
 typedef short T;
@@ -21,7 +22,6 @@ typedef double D;
 #define SI static int
 #define SV static void
 #define SC static char
-#define W while
 #define R return
 #define _(a...) {return({a;});}
 #define Fi(n,a...) for(int i=0;i<n;i++){a;}
@@ -34,6 +34,7 @@ typedef double D;
 #define I(x,a...) if(x){a;}
 #define J(a...) else I(a)
 #define E(a...) else{a;}
+#define W(c,a...) while(c){a;}
 #define SWAP(a,b) {typeof(a) t = a; a = b; b = t;}
 
 // Type-generic insertion sort.
@@ -48,7 +49,17 @@ S FILE * fget(C * n, C * m) {
   FILE * f = fopen(n, m);
   I(!f, perror("fopen"); exit(1)); R f;
 }
-I scanl(FILE * f, L * l)_(fscanf(f, "%ld", l) != EOF)
+S I scanl(FILE * f, L * l)_(fscanf(f, "%ld", l) != EOF)
+S C * slurp(C * n) {
+  FILE * f = fget(n, "r");
+  fseek(f, 0, SEEK_END);
+  L s = ftell(f);
+  rewind(f);
+  C * d = malloc(s + 1);
+  fread(d, 1, s, f);
+  d[s] = '\0';
+  return d;
+}
 
 #define sgn(x) ((x > 0) - (x < 0))
 
