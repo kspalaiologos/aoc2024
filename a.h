@@ -66,6 +66,10 @@ S C * slurp(C * n) {
   d[s] = 0; R d; }
 S V resi(I t1, I t2) { printf("T1: %d, T2: %d\n", t1, t2); }
 
+S I dir[8][2] = {
+  {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
+};
+
 #define sgn(x) ((x > 0) - (x < 0))
 
 #endif
