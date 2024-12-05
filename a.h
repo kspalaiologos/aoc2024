@@ -50,6 +50,8 @@ typedef regmatch_t Rm;
         x[_p] = x[_c]; _p = _c; _c = _p * 2 + 1; \
       ) E(break)))}
 #define M(a...) I main(V){a;}
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
 
 S FILE * fget(C * n, C * m) {
   FILE * f = fopen(n, m);
