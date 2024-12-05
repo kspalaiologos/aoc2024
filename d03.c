@@ -8,3 +8,5 @@ M(C * p = slurp("d03.txt"); Re r; Rm m[3];
       z = atoi(&p[m[1].rm_so]) * atoi(&p[m[2].rm_so]);
       I(on, t2 += z) t1 += z; n = m[0].rm_eo) E(n = 1))
   resi(t1, t2))
+// perl oneliner for part 1:
+//   perl -nE '$s+=$1*$2while/mul\((\d+),(\d+)\)/g}{say$s' d03.txt
