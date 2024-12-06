@@ -1,11 +1,11 @@
 #include"a.h"
-I r[2][1200], nr, u[999][99], nu[999], g[100][200], ng[100], id[100];
+I r[2][1200], nr, u[999][99], nu[999], g[100][200];
 I uidx(I ui, I v)_(Fj(nu[ui], I (u[ui][j] == v, R j)); -1)
 #define IX(n) (i##n = uidx(ui, r[n][i])) != -1
 #define POS(x) x = MAX(x, 0)
 I uv(I ui)_(I i0, i1; Fi(nr, I(IX(0) && IX(1) && i0 >= i1, R 0)) 1)
 I ru(I ui)_(
-  Fi(100, ng[i] = 0, id[i] = -1)
+  I ng[100] = { 0 }, id[100]; Fi(100, id[i] = -1)
   Fi(nr,
     I a = r[0][i], b = r[1][i], i0, i1;
     I(IX(0) && IX(1), POS(id[a]); POS(id[b]); id[g[a][ng[a]++] = b]++))
