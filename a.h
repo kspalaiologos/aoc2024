@@ -2,6 +2,7 @@
 #ifndef _A_H
 #define _A_H
 
+// Headers
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -10,6 +11,7 @@
 #include <stdlib.h>
 #include <regex.h>
 
+// Types
 typedef int I;
 typedef short T;
 typedef long L;
@@ -23,6 +25,8 @@ typedef regmatch_t Rm;
 #define SI static int
 #define SV static void
 #define SC static char
+
+// Language
 #define R return
 #define _(a...) {return({a;});}
 #define Fi(n,a...) for(typeof(n) i=0;i<n;i++){a;}
@@ -39,8 +43,13 @@ typedef regmatch_t Rm;
 #define C3(a,c1,b,c2,c) (a c1 b && b c2 c)
 #define ZM(a) bzero(a, sizeof(a))
 #define CM(a,b) memcpy(a,b,sizeof(a))
-#define SWAP(a,b) { typeof(a) _t = a; a = b; b = _t; }
-#define hsort(x, n, cmp) { \
+
+// Hygienic heapsort w. comparator.
+#define _UNIQUE() __COUNTER__
+#define _VAR(name) _JOIN(name, _UNIQUE())
+#define _JOIN(a, b) _JOIN_2(a, b)
+#define _JOIN_2(a, b) a ## b
+#define hsort_internal(x, n, cmp, _a, _b, _n, _i, _p, _c) { \
   L _n = n, _i = _n / 2, _p, _c; \
   F$ (typeof(x[0]) t,,x[_p] = t, \
     I (_i > 0, t = x[--_i]) \
@@ -49,21 +58,32 @@ typedef regmatch_t Rm;
     _p = _i;  _c = _i * 2 + 1; \
     W (_c < _n, \
       I (_c + 1 < _n && \
-        ({ typeof(x[0]) a = x[_c + 1], b = x[_c]; cmp; }), _c++) \
-      I (({ typeof(x[0]) a = x[_c], b = t; cmp; }), \
+        ({ typeof(x[0]) _a = x[_c + 1], _b = x[_c]; cmp; }), _c++) \
+      I (({ typeof(x[0]) _a = x[_c], _b = t; cmp; }), \
         x[_p] = x[_c]; _p = _c; _c = _p * 2 + 1; \
       ) E(break)))}
+#define hsort(x, n, _a, _b, cmp) \
+  hsort_internal(x, n, cmp, _a, _b, _VAR(__n), _VAR(__i), _VAR(__p), _VAR(__c))
+
+// Swap
+#define SWAP_internal(a,b,_t) { typeof(a) _t = a; a = b; b = _t; }
+#define SWAP(a,b) SWAP_internal(a,b,_VAR(__t))
+
+// Main
 #define M(a...) I main(V){a;}
+
+// Min/max/signum
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define sgn(x) ((x > 0) - (x < 0))
 
-S FILE * fget(C * n, C * m) {
-  FILE * f = fopen(n, m);
-  I(!f, perror("fopen"); exit(1)); R f; }
+// Static helpers
+S Fp fget(C * n, C * m) {
+  Fp f = fopen(n, m); I(!f, perror("fopen"); exit(1)); R f; }
 S I scani(FILE * f, I * l)_(fscanf(f, "%d", l) != EOF)
 S I scanl(FILE * f, L * l)_(fscanf(f, "%ld", l) != EOF)
 S C * slurp(C * n) {
-  FILE * f = fget(n, "r");
+  Fp f = fget(n, "r");
   fseek(f, 0, SEEK_END);
   L s = ftell(f);
   rewind(f);
@@ -78,8 +98,6 @@ S I dir[8][2] = {
 S I dir4cw[4][2] = {
   {-1, 0}, {0, 1}, {1, 0}, {0, -1}
 };
-
-#define sgn(x) ((x > 0) - (x < 0))
 
 #endif
 
