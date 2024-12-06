@@ -1,5 +1,5 @@
 #include"a.h"
-C g[140][140], v[140][140], cx, cy, d; I n, p1, p2, cc;
+C g[140][140], v[140][140], d; I n, p1, p2, cc, cx, cy;
 I s() {
   I pcx = cx + dir4cw[d][0], pcy = cy + dir4cw[d][1];
   I(0 <= pcx && pcx < n && 0 <= pcy && pcy < strlen(g[pcx]),
