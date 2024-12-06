@@ -8,7 +8,7 @@ I uv(I ui)_(
 I ru(I ui)_(
   Fi(100, ng[i] = 0, id[i] = -1)
   Fi(nr,
-    I a=r[0][i],b=r[1][i];
+    I a = r[0][i], b = r[1][i];
     I(uidx(ui, a) != -1 && uidx(ui, b) != -1,
       g[a][ng[a]++] = b; id[a] = MAX(id[a], 0); id[b] = MAX(id[b]+1, 1)))
   I t[100], ti = 0, q[100], qh = 0, qt = 0, n;

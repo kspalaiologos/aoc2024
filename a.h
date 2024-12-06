@@ -29,12 +29,16 @@ typedef regmatch_t Rm;
 #define Fj(n,a...) for(typeof(n) j=0;j<n;j++){a;}
 #define Fx(n,a...) for(typeof(n) x=0;x<n;x++){a;}
 #define Fy(n,a...) for(typeof(n) y=0;y<n;y++){a;}
+#define F2d(n,a...) Fi(n, Fj(n, a))
 #define F_(z,i,n,a...) for(typeof(n) z=i;z<n;z++){a;}
 #define F$(x,y,z,a...) for(x;y;z){a;}
 #define I(x,a...) if(x){a;}
 #define J(a...) else I(a)
 #define E(a...) else{a;}
 #define W(c,a...) while(c){a;}
+#define C3(a,c1,b,c2,c) (a c1 b && b c2 c)
+#define ZM(a) bzero(a, sizeof(a))
+#define CM(a,b) memcpy(a,b,sizeof(a))
 #define SWAP(a,b) { typeof(a) _t = a; a = b; b = _t; }
 #define hsort(x, n, cmp) { \
   L _n = n, _i = _n / 2, _p, _c; \
