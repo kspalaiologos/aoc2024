@@ -5,8 +5,7 @@ I fn(L v, L a, L * n, I t)_(
   I (!*n, R a == v)
   I r = fn(v, a + *n, n + 1, t) || fn(v, a * *n, n + 1, t);
   t ? r || fn(v, conc(a, *n), n + 1, 1) : r)
-M(Fp f = fget("d07.txt", "r");
-  C buf[256], * p; I i, j;
+M(Fp f = fget("d07.txt", "r"); C buf[256], * p; I i, j;
   F$((i = j = 0), p = fgets(buf, 200, f), (i++, j = 0),
     eq[i][0] = strtol(p, &p, 10); p += 2;
     W(*p, eq[i][++j] = strtol(p, &p, 10); p++))
