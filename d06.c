@@ -3,7 +3,7 @@ C g[140][140], v[140][140], v2[140][140], d;
 I n, p1, p2, cx, cy, l[140], ox, oy;
 I s() {
   I pcx = cx + dir4cw[d][0], pcy = cy + dir4cw[d][1];
-  I(C3(0,<=,pcx,<,n) && C3(0,<=,pcy,<,l[pcx]),
+  I(CR0(pcx,n) && CR0(pcy,l[pcx]),
     I(g[pcx][pcy] == '#', d = (d + 1) % 4)
     E(I(v[pcx][pcy] == d + 1, p2++; R 0)
       E(v[cx = pcx][cy = pcy] = d + 1)) R 1) E(R 0) }

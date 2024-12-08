@@ -41,6 +41,7 @@ typedef regmatch_t Rm;
 #define E(a...) else{a;}
 #define W(c,a...) while(c){a;}
 #define C3(a,c1,b,c2,c) (a c1 b && b c2 c)
+#define CR0(b,c) (0 <= b && b < c)
 #define ZM(a) bzero(a, sizeof(a))
 #define CM(a,b) memcpy(a,b,sizeof(a))
 
