@@ -102,7 +102,7 @@ S C * slurp(C * n) {
 S V resi(I t1, I t2) { printf("T1: %d, T2: %d\n", t1, t2); }
 S V resl(L t1, L t2) { printf("T1: %ld, T2: %ld\n", t1, t2); }
 
-S I dir[8][2] = {
+S I dir8[8][2] = {
   {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
 };
 S I dir4cw[4][2] = {
