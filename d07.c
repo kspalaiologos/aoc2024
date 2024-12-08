@@ -4,8 +4,7 @@ L conc(L a, L b)_(L m = 1; W (m <= b, m *= 10); a * m + b)
 I fn(L v, L a, L * n, I t)_(
   #define FR(x) fn(v, x, n + 1, t)
   I (!*n, R a == v)
-  I r = FR(a + *n) || FR(a * *n);
-  t ? r || FR(conc(a, *n)) : r)
+  FR(a + *n) || FR(a * *n) || (t && FR(conc(a, *n))))
 M(Fp f = fget("d07.txt", "r"); C buf[256], * p; I i, j;
   F$((i = j = 0), p = fgets(buf, 256, f), (i++, j = 0),
     eq[i][0] = strtol(p, &p, 10); p += 2;
