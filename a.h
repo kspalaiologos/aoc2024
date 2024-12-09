@@ -30,6 +30,7 @@ typedef regmatch_t Rm;
 #define R return
 #define _(a...) {return({a;});}
 #define Fi(n,a...) for(typeof(n) i=0;i<n;i++){a;}
+#define Fid(n,a...) for(typeof(n) i=n-1;i>=0;i--){a;}
 #define Fj(n,a...) for(typeof(n) j=0;j<n;j++){a;}
 #define Fx(n,a...) for(typeof(n) x=0;x<n;x++){a;}
 #define Fy(n,a...) for(typeof(n) y=0;y<n;y++){a;}
