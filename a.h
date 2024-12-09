@@ -77,6 +77,11 @@ typedef regmatch_t Rm;
   ({ I _v = 0; F_(z, i, n, I(a, _v = 1)) _v; })
 #define Fany(z,i,n,a...) Fany_internal(_VAR(__v),z,i,n,a)
 
+// Summing fold-like LTR construct.
+#define Fisum(n,i,a...) ({ typeof(i) _v = i; Fi(n, _v += ({a;})); _v; })
+#define Fjsum(n,j,a...) ({ typeof(j) _v = j; Fj(n, _v += ({a;})); _v; })
+#define F2dsum(n,i,a...) ({ typeof(i) _v = i; F2d(n, _v += ({a;})); _v; })
+
 // Swap
 #define SWAP_internal(a,b,_t) { typeof(a) _t = a; a = b; b = _t; }
 #define SWAP(a,b) SWAP_internal(a,b,_VAR(__t))

@@ -11,6 +11,6 @@ V a()_(cx = ox, cy = oy; ZM(v); v[cx][cy]++; d = 0; W(s()))
 M(Fp f = fget("d06.txt", "r");
   W(fgets(g[n], 140, f), l[n] = strlen(g[n]) - 1, n++)
   F2d(140, I(g[i][j] == '^', ox = i, oy = j))
-  a(); CM(v2, v); Fi(140, Fj(140, p1 += v[i][j] != 0))
+  a(); CM(v2, v); p1 = F2dsum(140, 0, v[i][j] != 0);
   F2d(140, I(g[i][j] == '.' && v2[i][j], g[i][j] = '#'; a(); g[i][j] = '.'))
   resi(p1, p2))
