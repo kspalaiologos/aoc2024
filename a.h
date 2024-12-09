@@ -68,13 +68,13 @@ typedef regmatch_t Rm;
 #define hsort(x, n, _a, _b, cmp) \
   hsort_internal(x, n, cmp, _a, _b, _VAR(__n), _VAR(__i), _VAR(__p), _VAR(__c))
 
-// Fall: 1 if predicate holds for all elements, 0 otherwise.
-// Fany: 1 if predicate holds for any element, 0 otherwise.
+// Fall: 1 if predicate holds for all elements, 0 otherwise. Short-circuits.
+// Fany: 1 if predicate holds for any element, 0 otherwise. Short-circuits.
 #define Fall_internal(_v,z,i,n,a...) \
-  ({ I _v = 1; F_(z, i, n, I(!(a), _v = 0)) _v; })
+  ({ I _v = 1; F_(z, i, n, I(!(a), _v = 0; B)) _v; })
 #define Fall(z,i,n,a...) Fall_internal(_VAR(__v),z,i,n,a)
 #define Fany_internal(_v,z,i,n,a...) \
-  ({ I _v = 0; F_(z, i, n, I(a, _v = 1)) _v; })
+  ({ I _v = 0; F_(z, i, n, I(a, _v = 1; B)) _v; })
 #define Fany(z,i,n,a...) Fany_internal(_VAR(__v),z,i,n,a)
 
 // Summing fold-like LTR construct.
