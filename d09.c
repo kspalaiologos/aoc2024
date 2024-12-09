@@ -1,22 +1,16 @@
 #include "a.h"
 #define P 19999
-L sol(C * p, I p2)_(
-  T b[100000], fid = 0; I bs = 0;
-  Fi(P, Fj(p[i], b[bs++] = fid) fid++;
-    I(++i < P, Fj(p[i], b[bs++] = -1)))
-  I(p2, C fm[P] = { 0 }; I fp[9], n, fb, fc;
-    Fi(bs, I(b[i] > 0, fm[b[i]] = 1))
-    Fid(P, I(fm[i], n = 0, fb = -1, fc = 0;
-      Fj(bs, I(b[j] == i, fp[n++] = j))
-      Fi(bs, I(b[i] != -1, fb = -1, fc = 0)
-        E(I(fb == -1, fb = i) I(++fc == n, B)))
-      I(fb != -1 && fb < fp[0],
-        Fj(n, b[fp[j]] = -1, b[fb + j] = i)))))
-  E(W(1, I rf = -1, lf = -1;
-    Fid(bs, I(b[i] > 0, rf = i; B))
-    Fi(bs, I(b[i] == -1, lf = i; B))
-    I(rf == -1 || lf == -1 || lf > rf, B)
-    b[lf] = b[rf]; b[rf] = -1))
-  L c = 0; Fi(bs, I(b[i] > 0, c += i * b[i])) c)
-M(C * p = slurp("d09.txt"); Fi(P, p[i] -= '0')
-  L t[2]; Fi(2, t[i] = sol(p, i)) resl(t[0], t[1]))
+V p2(I * e, I sz)_(Fid(sz, I(e[i] != -1 && i,
+  I n = e[i], need = 1, has; W (e[--i] == n && i, need++);
+  Fj(i, I(e[j] == -1, F$(has = 1, e[++j] == -1, has++)
+    I(need <= has,
+      F$ (j -= has + 1, need--, e[i] = -1, e[++j] = e[++i]) B))) i++)))
+V p1(I * e, I sz)_(I j = sz - 1; Fi(j, I(e[i] == -1,
+  W(e[j] == -1, j--) SWAP(e[i], e[j]) j--)))
+M(C * c = slurp("d09.txt"); I ns = 0; Fi(P, ns += c[i] - '0');
+  I e[2][P*10], j = 0, k = 0; L s[2] = { 0 };
+  Fi(P, Fx(c[i] - '0', e[0][k] = e[1][k] = j; k++)
+    I(++i < P, Fx(c[i] - '0', e[0][k] = e[1][k] = -1; k++) j++))
+  p1(e[0], ns); p2(e[1], ns);
+  Fx(2, Fi(ns, I(e[x][i] != -1, s[x] += i * e[x][i])))
+  resl(s[0], s[1]))
