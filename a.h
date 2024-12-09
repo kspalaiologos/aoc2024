@@ -28,6 +28,7 @@ typedef regmatch_t Rm;
 
 // Language
 #define R return
+#define B break
 #define _(a...) {return({a;});}
 #define Fi(n,a...) for(typeof(n) i=0;i<n;i++){a;}
 #define Fid(n,a...) for(typeof(n) i=n-1;i>=0;i--){a;}
