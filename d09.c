@@ -1,4 +1,4 @@
-#include "a.h"
+#include "a.h" // 6344673854800 6360363199987
 #define P 19999
 V p2(I * e, I sz)_(Fid(sz, I(e[i] != -1 && i, I n = e[i], need = 1, has;
   W (e[--i] == n && i, need++); Fj(i, I(e[j] == -1,

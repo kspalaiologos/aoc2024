@@ -1,4 +1,4 @@
-#include"a.h"
+#include"a.h" // 5212 1767
 C g[140][140], v[140][140], v2[140][140], d;
 I n, p1, p2, cx, cy, l[140], ox, oy;
 I s(){

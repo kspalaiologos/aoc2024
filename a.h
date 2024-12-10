@@ -86,8 +86,16 @@ typedef regmatch_t Rm;
 #define SWAP_internal(a,b,_t) { typeof(a) _t = a; a = b; b = _t; }
 #define SWAP(a,b) SWAP_internal(a,b,_VAR(__t))
 
+// High precision timer:
+#include <emmintrin.h>
+#include <time.h>
+S V barrier() { asm volatile("mfence" ::: "memory"); }
+#define TIC() struct timespec __tic; barrier(); clock_gettime(CLOCK_MONOTONIC, &__tic); barrier()
+#define TOC() ({ struct timespec __toc; barrier(); clock_gettime(CLOCK_MONOTONIC, &__toc); barrier(); \
+  (__toc.tv_sec - __tic.tv_sec) + (__toc.tv_nsec - __tic.tv_nsec) / 1e9; })
+
 // Main
-#define M(a...) I main(V){a;}
+#define M(a...) I main(V){TIC();a;printf("Elapsed: %f s\n",TOC());}
 
 // Min/max/signum
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
