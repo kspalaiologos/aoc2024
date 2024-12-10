@@ -1,6 +1,6 @@
 #include"a.h"
 #define P 30
-char r[2000][2], u[200][P];
+C r[2000][2], u[200][P];
 #define OK Fany(z, 0, nr, u[i][j] == r[z][1] && u[i][k] == r[z][0])
 #define SOL ({ F$(y = 0, y < P && u[i][y], y++) u[i][y / 2]; })
 M(C * p = slurp("d05.txt");
