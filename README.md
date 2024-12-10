@@ -1,7 +1,5 @@
 # aoc2024
 
-![Benchmark](bench.png)
-
 ## Miscellany
 
 Perl one-liner for day 3 part 1:
