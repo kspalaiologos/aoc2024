@@ -95,12 +95,12 @@ typedef regmatch_t Rm;
 #define sgn(x) ((x > 0) - (x < 0))
 
 // Static helpers
-S Fp fget(C * n, C * m) {
-  Fp f = fopen(n, m); I(!f, perror("fopen"); exit(1)); R f; }
+S Fp fget(C * n) {
+  Fp f = fopen(n, "r"); I(!f, perror("fopen"); exit(1)); R f; }
 S I scani(FILE * f, I * l)_(fscanf(f, "%d", l) != EOF)
 S I scanl(FILE * f, L * l)_(fscanf(f, "%ld", l) != EOF)
 S C * slurp(C * n) {
-  Fp f = fget(n, "r");
+  Fp f = fget(n);
   fseek(f, 0, SEEK_END);
   L s = ftell(f);
   rewind(f);
