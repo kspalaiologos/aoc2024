@@ -12,13 +12,13 @@ size_t buf_append(C * ptr, size_t size, size_t nmemb, C * buf) {
 I main(I ac, C * av[]) {
   I(ac < 2, R 1);
   C * opt = av[1];
-  FILE * cookie = fget("cookie.txt", "r"); // Cookie: session=..., no trail LF.
+  FILE * cookie = fget("cookie.txt"); // Cookie: session=..., no trail LF.
   C cstr[256] = { 0 }; fread(cstr, 1, 256, cookie);
   CURL * curl = curl_easy_init();
   if(!strcmp(opt, "get-input") && ac == 3) {
     C * url; asprintf(&url, "https://adventofcode.com/2024/day/%d/input", atoi(av[2]));
     C * oname; asprintf(&oname, "d%02d.txt", atoi(av[2]));
-    FILE * out = fget(oname, "wb");
+    FILE * out = fopen(oname, "wb");
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
