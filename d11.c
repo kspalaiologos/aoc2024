@@ -1,5 +1,5 @@
 #include"a.h"
-#define MS 300007
+#define MS (1<<21)
 L k[MS], v[MS];
 L ins(L kk, L vv)_(I i = kk % MS; W(v[i] && k[i] != kk, i = (i + 1) % MS)
   k[i] = kk; v[i] = vv)
