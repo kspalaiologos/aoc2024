@@ -4,7 +4,7 @@ import subprocess
 import matplotlib.pyplot as plt
 def get_average_runtime(executable_path):
   runtimes = []
-  for _ in range(5):
+  for _ in range(10):
     output = subprocess.run(['./' + executable_path], capture_output=True).stdout.decode()
     runtime = float(re.search(r'Elapsed: ([0-9.]+) s', output).group(1))
     runtimes.append(runtime)
