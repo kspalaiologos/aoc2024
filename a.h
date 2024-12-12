@@ -105,10 +105,19 @@ S V barrier() { asm volatile("mfence" ::: "memory"); }
 #define QINIT() I qh = 0, qt = 0
 #define WQ(a...) W(qh < qt, a)
 
+// Grid
+#define CHARGRID(P,f,g,a...) C g[P][P]; Fi(P, Fj(P, g[i][j] = getc(f); a) getc(f))
+
 // Min/max/signum
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define sgn(x) ((x > 0) - (x < 0))
+
+// Regex stuff
+#define regcomp(r, e) regcomp(&r, e, REG_EXTENDED)
+
+// ASAN stuff
+const char * __asan_default_options() { return "detect_leaks=0"; }
 
 // Static helpers
 S Fp fget(C * n) {
