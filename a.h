@@ -97,6 +97,14 @@ S V barrier() { asm volatile("mfence" ::: "memory"); }
 // Main
 #define M(a...) I main(V){TIC();a;printf("Elapsed: %f s\n",TOC());}
 
+// Queue
+#define QPUSH2(x,y) q[qt][0] = x; q[qt++][1] = y
+#define QPOP2(x,y) x = q[qh][0]; y = q[qh++][1]
+#define QPUSH(x) q[qt++] = x
+#define QPOP(x) x = q[qh++]
+#define QINIT() I qh = 0, qt = 0
+#define WQ(a...) W(qh < qt, a)
+
 // Min/max/signum
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
