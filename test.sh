@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-make clean && make DEBUG=0 -j$(nproc)
+set -e
+make clean >/dev/null && make DEBUG=0 -j$(nproc) 2>/dev/null >/dev/null
 function day {
   d=$1 ; out=$2
   "./d$d.out" | head -n 1 | grep -q "$out"
   if [ $? -eq 0 ]; then
-    echo "Day $d: passed"
+    echo -e "\033[1;32mDay $d: passed\033[0m"
   else
-    echo "Day $d: failed"
+    echo -e "\033[1;31mDay $d: failed\033[0m"
     exit 1
   fi
 }
