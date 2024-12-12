@@ -8,7 +8,7 @@ I s(){
     E(I(v[pcx][pcy] == d + 1, p2++; R 0)
       E(v[cx = pcx][cy = pcy] = d + 1)) R 1) E(R 0) }
 V a()_(cx = ox, cy = oy; ZM(v); v[cx][cy]++; d = 0; W(s()))
-M(Fp f = fget("d06.txt"); CHARGRID(P, f, g);
+M(Fp f = fget("d06.txt"); CHARGRIDF(P, f, g);
   F2d(P, I(g[i][j] == '^', ox = i, oy = j))
   a(); CM(v2, v); p1 = F2dsum(P, 0, v[i][j] != 0);
   F2d(P, I(g[i][j] == '.' && v2[i][j], g[i][j] = '#'; a(); g[i][j] = '.'))

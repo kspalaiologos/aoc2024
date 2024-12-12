@@ -106,7 +106,8 @@ S V barrier() { asm volatile("mfence" ::: "memory"); }
 #define WQ(a...) W(qh < qt, a)
 
 // Grid
-#define CHARGRID(P,f,g,a...) Fi(P, Fj(P, g[i][j] = getc(f); a) getc(f))
+#define CHARGRIDF(P,f,g,a...) Fi(P, Fj(P, g[i][j] = getc(f); a) getc(f))
+#define LINESF(P,f,a...) C buf[P], * p; W(p = fgets(buf, P, f), a)
 
 // Min/max/signum
 #define MAX(a,b) ((a) > (b) ? (a) : (b))

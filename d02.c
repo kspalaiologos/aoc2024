@@ -1,8 +1,8 @@
 #include"a.h" // 479 531
 I z, t1, t2; M(Fp f = fget("d02.txt"); I n, d, c, s[16];
-  C l[64], * p; I in[1000][16], x[16], xl[1000];
-  W(p = fgets(l, 64, f),
-    F$(n = 0, *p, p++, in[z][n++] = strtol(p, &p, 10)) xl[z++] = n)
+  I in[1000][16], x[16], xl[1000];
+  LINESF(64, f, F$(n = 0, *p, p++,
+    in[z][n++] = strtol(p, &p, 10)) xl[z++] = n)
   Fi(z, Fj(15, c = -1;
     #define D(f, n) f(x[n] - x[n - 1])
     Fy(xl[i], I(y != j - 1, x[++c] = in[i][y]))
