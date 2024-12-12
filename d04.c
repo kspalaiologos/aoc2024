@@ -1,6 +1,6 @@
 #include"a.h" // 2718 2046
 #define P 140
-I p1, p2; M(Fp f = fget("d04.txt"); CHARGRID(P, f, g);
+I p1, p2; M(Fp f = fget("d04.txt"); C g[P][P]; CHARGRID(P, f, g);
   I k; F2d(P, Fx(8, k = 1; Fy(4,
     I X = i + y * dir8[x][0], Y = j + y * dir8[x][1];
     I(!CR0(X,P) || !CR0(Y,P) || g[X][Y] != "XMAS"[y], k = 0; B)) I(k, p1++)))
