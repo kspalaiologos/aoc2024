@@ -1,4 +1,4 @@
-#include"a.h" // 244 912
+#include"a.h"
 #define P 50
 C g[P][P], na[256], a[256][12][2], t1[P][P], t2[P][P]; I s1, s2;
 M(Fp f = fget("d08.txt"); C c, * p, * X, * Y;

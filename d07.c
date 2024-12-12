@@ -1,4 +1,4 @@
-#include"a.h" // 303876485655 146111650210682
+#include"a.h"
 L eq[850][16], t[2];
 L conc(L a, L b)_(L m = 1; W(m <= b, m *= 10); a * m + b)
 #define FR(x) fn(v, x, n + 1, t)

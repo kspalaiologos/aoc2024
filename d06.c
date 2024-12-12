@@ -1,4 +1,4 @@
-#include"a.h" // 5212 1767
+#include"a.h"
 #define P 130
 C g[P][P], v[P][P], v2[P][P], d;
 I p1, p2, cx, cy, ox, oy, pcx, pcy;

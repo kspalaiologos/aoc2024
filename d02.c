@@ -1,4 +1,4 @@
-#include"a.h" // 479 531
+#include"a.h"
 I z, t1, t2; M(Fp f = fget("d02.txt"); I n, d, c, s[16];
   I in[1000][16], x[16], xl[1000];
   LINESF(64, f, F$(n = 0, *p, p++,

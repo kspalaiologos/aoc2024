@@ -1,4 +1,4 @@
-#include "a.h" // 6344673854800 6360363199987 / O(n) spotted by @dzaima
+#include "a.h" // O(n) spotted by @dzaima
 #define P 19999
 V p2(T * e, I sz)_(I s = 0; Fid(sz, I(e[i] && i, I n = e[i], need = 1, has;
   W (e[--i] == n && i, need++); C f=1; F_(j,s,i, I(!e[j], I(f, s=j; f=0)

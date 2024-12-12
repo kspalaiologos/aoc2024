@@ -1,4 +1,4 @@
-#include "a.h" // 646 1494
+#include"a.h"
 #define P 60
 I d, p1, p2; C g[P][P], r9[P][P], v[P][P];
 V f(I r, I c){

@@ -1,4 +1,4 @@
-#include"a.h" // 2718 2046
+#include"a.h"
 #define P 140
 I p1, p2; M(Fp f = fget("d04.txt"); C g[P][P]; CHARGRIDF(P, f, g);
   I k; F2d(P, Fx(8, k = 1; Fy(4,

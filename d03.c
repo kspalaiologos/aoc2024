@@ -1,4 +1,4 @@
-#include"a.h" // 185797128 89798695
+#include"a.h"
 I t1, t2; M(C * p = slurp("d03.txt"); Re r; Rm m[3]; 
   regcomp(r, "mul\\(([0-9]+),([0-9]+)\\)");
   I on = 1, n, z; W(*p,

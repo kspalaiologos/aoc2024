@@ -1,4 +1,4 @@
-#include"a.h" // 5064 5152
+#include"a.h"
 #define P 30
 C r[2000][2], u[200][P];
 #define OK Fany(z, 0, nr, u[i][j] == r[z][1] && u[i][k] == r[z][0])
