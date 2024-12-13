@@ -1,4 +1,4 @@
-#include"a.h"
+#include"a.h" // TODO: Use vector APIs.
 #define P 140
 #define Fs(a,b) \
   !Fany(j,0,s, k1[j] == y - a && k2[j] == z - b && k3[j] == x)
