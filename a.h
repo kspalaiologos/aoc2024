@@ -26,6 +26,21 @@ typedef regmatch_t Rm;
 #define SV static void
 #define SC static char
 
+// Vector
+#define _VEC_DECL_TYPE(T, N) \
+  typedef T v##N##T __attribute__ ((vector_size (N * sizeof(T))))
+#define _VT(T, N) T __attribute__ ((vector_size (N * sizeof(T))))
+_VEC_DECL_TYPE(I, 2); // v2I
+_VEC_DECL_TYPE(C, 2); // v2C
+#define V2I(v) v[0]][v[1]
+#define VC(t, v) __builtin_convertvector(v, t)
+
+// Reduction operators
+#define _V_OP(v, op, id) \
+  ({ typeof((v)[0]) _v = id; Fx((sizeof(v) / sizeof((v)[0])), _v = _v op (v)[x]); _v; })
+#define Vor(v) _V_OP(v, |, 0)
+#define Vand(v) _V_OP(v, &, ~0)
+
 // Language
 #define R return
 #define B break
@@ -35,7 +50,7 @@ typedef regmatch_t Rm;
 #define Fj(n,a...) for(typeof(n) j=0;j<n;j++){a;}
 #define Fx(n,a...) for(typeof(n) x=0;x<n;x++){a;}
 #define Fy(n,a...) for(typeof(n) y=0;y<n;y++){a;}
-#define F2d(n,a...) Fi(n, Fj(n, a))
+#define F2d(n,a...) Fi(n, Fj(n, _VT(typeof(n), 2) ij = {i,j}; a))
 #define F_(z,i,n,a...) for(typeof(n) z=i;z<n;z++){a;}
 #define F$(x,y,z,a...) for(x;y;z){a;}
 #define I(x,a...) if(x){a;}
@@ -106,7 +121,8 @@ S V barrier() { asm volatile("mfence" ::: "memory"); }
 #define WQ(a...) W(qh < qt, a)
 
 // Grid
-#define CHARGRIDF(P,f,g,a...) Fi(P, Fj(P, g[i][j] = getc(f); a) getc(f))
+#define CHARGRIDF(P,f,g,a...) \
+  Fi(P, Fj(P, g[i][j] = getc(f); a) getc(f))
 #define LINESF(P,f,a...) C buf[P], * p; W(p = fgets(buf, P, f), a)
 
 // Min/max/signum
@@ -138,10 +154,10 @@ S V resl(L t1, L t2) { printf("T1: %ld, T2: %ld\n", t1, t2); }
 
 L ilog10l(L n)_(L r = 0; W (n > 0, n /= 10; r++) r)
 
-S I dir8[8][2] = {
+S v2I dir8[8] = {
   {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
 };
-S I dir4cw[4][2] = {
+S v2I dir4cw[4] = {
   {-1, 0}, {0, 1}, {1, 0}, {0, -1}
 };
 
