@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-set -e
 make clean >/dev/null && make DEBUG=0 -j$(nproc) 2>/dev/null >/dev/null
+if [ $? -ne 0 ]; then
+  echo -e "\033[1;31mCompilation failed\033[0m"
+  exit 1
+fi
 function day {
   d=$1 ; out=$2
   "./d$d.out" | head -n 1 | grep -q "$out"
@@ -23,4 +26,5 @@ day "09" "T1: 6344673854800, T2: 6360363199987"
 day "10" "T1: 646, T2: 1494"
 day "11" "T1: 194782, T2: 233007586663131"
 day "12" "T1: 1381056, T2: 834828"
+day "13" "T1: 28059, T2: 102255878088512"
 exit 0
