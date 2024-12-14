@@ -111,15 +111,17 @@ _VEC_DECL_TYPE(C, 2); // v2C
 #define SWAP(a,b) SWAP_internal(a,b,_VAR(__t))
 
 // High precision timer:
-#include <emmintrin.h>
 #include <time.h>
 S V barrier() { asm volatile("mfence" ::: "memory"); }
-#define TIC() struct timespec __tic; barrier(); clock_gettime(CLOCK_MONOTONIC, &__tic); barrier()
+S L rdtsc() { L a, d; asm volatile("rdtsc" : "=a" (a), "=d" (d)); R a | (d << 32); }
+#define TIC() struct timespec __tic; L __tsc_tic; barrier(); clock_gettime(CLOCK_MONOTONIC, &__tic); __tsc_tic = rdtsc(); barrier()
 #define TOC() ({ struct timespec __toc; barrier(); clock_gettime(CLOCK_MONOTONIC, &__toc); barrier(); \
   (__toc.tv_sec - __tic.tv_sec) + (__toc.tv_nsec - __tic.tv_nsec) / 1e9; })
+#define TSC_TOC() ({ L __tsc_toc; barrier(); __tsc_toc = rdtsc(); barrier(); \
+  __tsc_toc - __tsc_tic; })
 
 // Main
-#define M(a...) I main(V){TIC();a;printf("Elapsed: %f s\n",TOC());}
+#define M(a...) I main(V){TIC();a;printf("Elapsed: %f s, %ld cycles.\n",TOC(),TSC_TOC());}
 
 // Queue
 #define QPUSH2(x,y) q[qt][0] = x; q[qt++][1] = y
