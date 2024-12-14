@@ -13,6 +13,7 @@
 
 // Types
 typedef int I;
+typedef unsigned UI;
 typedef short T;
 typedef long L;
 typedef FILE * Fp;
@@ -96,6 +97,14 @@ _VEC_DECL_TYPE(C, 2); // v2C
 #define Fisum(n,i,a...) ({ typeof(i) _v = i; Fi(n, _v += ({a;})); _v; })
 #define Fjsum(n,j,a...) ({ typeof(j) _v = j; Fj(n, _v += ({a;})); _v; })
 #define F2dsum(n,i,a...) ({ typeof(i) _v = i; F2d(n, _v += ({a;})); _v; })
+#define Fiprod(n,i,a...) ({ typeof(i) _v = i; Fi(n, _v *= ({a;})); _v; })
+#define Fjprod(n,j,a...) ({ typeof(j) _v = j; Fj(n, _v *= ({a;})); _v; })
+#define F2dprod(n,i,a...) ({ typeof(i) _v = i; F2d(n, _v *= ({a;})); _v; })
+
+#define Fimin(n,i,a...) ({ typeof(i) _v = i; Fi(n, _v = MIN(_v, ({a;}))); _v; })
+#define Fimax(n,i,a...) ({ typeof(i) _v = i; Fi(n, _v = MAX(_v, ({a;}))); _v; })
+#define Fimini(n,id,a...) ({ typeof(id) _m = id, _t; I _mi = -1; Fi(n, _t = ({a;}); I(_t < _m, _m = _t, _mi = i)); _mi; })
+#define Fimaxi(n,id,a...) ({ typeof(id) _m = id, _t; I _mi = -1; Fi(n, _t = ({a;}); I(_t > _m, _m = _t, _mi = i)); _mi; })
 
 // Swap
 #define SWAP_internal(a,b,_t) { typeof(a) _t = a; a = b; b = _t; }
@@ -125,10 +134,11 @@ S V barrier() { asm volatile("mfence" ::: "memory"); }
   Fi(P, Fj(P, g[i][j] = getc(f); a) getc(f))
 #define LINESF(P,f,a...) C buf[P], * p; W(p = fgets(buf, P, f), a)
 
-// Min/max/signum
+// Min/max/signum/remainder
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define sgn(x) ((x > 0) - (x < 0))
+#define SGN(x) ((x > 0) - (x < 0))
+#define REM(x,y) ((x % y + y) % y)
 
 // Regex stuff
 #define regcomp(r, e) regcomp(&r, e, REG_EXTENDED)
@@ -152,7 +162,7 @@ S C * slurp(C * n) {
 S V resi(I t1, I t2) { printf("T1: %d, T2: %d\n", t1, t2); }
 S V resl(L t1, L t2) { printf("T1: %ld, T2: %ld\n", t1, t2); }
 
-L ilog10l(L n)_(L r = 0; W (n > 0, n /= 10; r++) r)
+S L ilog10l(L n)_(L r = 0; W (n > 0, n /= 10; r++) r)
 
 S v2I dir8[8] = {
   {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
@@ -160,6 +170,9 @@ S v2I dir8[8] = {
 S v2I dir4cw[4] = {
   {-1, 0}, {0, 1}, {1, 0}, {0, -1}
 };
+
+S I mod_inv(I a, I m)_(a %= m; Fx(m, I((a * x) % m == 1, R x)) 1)
+S I isnum(C c)_(isdigit(c) || c == '-')
 
 #endif
 
