@@ -23,9 +23,6 @@ typedef double D;
 typedef regex_t Re;
 typedef regmatch_t Rm;
 #define S static
-#define SI static int
-#define SV static void
-#define SC static char
 
 // Vector
 #define _VEC_DECL_TYPE(T, N) \
@@ -45,6 +42,7 @@ _VEC_DECL_TYPE(C, 2); // v2C
 // Language
 #define R return
 #define B break
+#define CO continue
 #define _(a...) {return({a;});}
 #define Fi(n,a...) for(typeof(n) i=0;i<n;i++){a;}
 #define Fid(n,a...) for(typeof(n) i=n-1;i>=0;i--){a;}
@@ -58,6 +56,9 @@ _VEC_DECL_TYPE(C, 2); // v2C
 #define J(a...) else I(a)
 #define E(a...) else{a;}
 #define W(c,a...) while(c){a;}
+#define SW(e,a...) switch(e){a;}
+#define SC(c, a...) case c: {a; break;}
+#define SD(a...) default: {a; break;}
 #define C3(a,c1,b,c2,c) (a c1 b && b c2 c)
 #define CR0(b,c) (0 <= b && b < c)
 #define ZM(a) bzero(a, sizeof(a))
